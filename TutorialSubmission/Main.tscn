@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Main.gd" type="Script" id=1]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/FOnt/Comic Sans MS.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Bullet.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Sounds/Gun_Fire_GUN_Hunt.wav" type="AudioStream" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 30
+font_data = ExtResource( 3 )
+
+[node name="Main" type="Node"]
+script = ExtResource( 1 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 147, 188 )
+
+[node name="Bullet" parent="." instance=ExtResource( 4 )]
+position = Vector2( 268, 451 )
+
+[node name="Bullet2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 821, 255 )
+
+[node name="Bullet3" parent="." instance=ExtResource( 4 )]
+position = Vector2( 533, 434 )
+
+[node name="Bullet4" parent="." instance=ExtResource( 4 )]
+position = Vector2( 880, 437 )
+
+[node name="Bullet5" parent="." instance=ExtResource( 4 )]
+position = Vector2( 537, 201 )
+
+[node name="Start" type="Label" parent="."]
+anchor_right = 1.0
+margin_bottom = 89.0
+custom_fonts/font = SubResource( 1 )
+text = "The mercenary lost their stuff. 
+Collect their bullets before they get their insurance!"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_editor_description_": "Comic sans hell"
+}
+
+[node name="Bang" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = 1.0
+pitch_scale = 0.25
+
+[connection signal="collected" from="Bullet" to="." method="_on_Bullet_collected"]
+[connection signal="collected" from="Bullet2" to="." method="_on_Bullet_collected"]
+[connection signal="collected" from="Bullet3" to="." method="_on_Bullet_collected"]
+[connection signal="collected" from="Bullet4" to="." method="_on_Bullet_collected"]
+[connection signal="collected" from="Bullet5" to="." method="_on_Bullet_collected"]
